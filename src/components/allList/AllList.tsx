@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import "./allList.css"
 
 function AllList ({info}:any){
-    
+    //on stablitz
 
     const [allPost, setAllPost] = useState<any> ([])
 
