@@ -1,11 +1,16 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button, TextField, Box } from '@mui/material';
 import AllList from './components/allList/AllList';
 import LastFivePost from './components/lastFivePost/LastFivePost';
 
 function App() {
   const [info, setInfo] = useState<any>([]);
+  const [name, setName] = useState<any>("")
+
+  const inputRefName = useRef<HTMLInputElement>(null);
+  const inputRefUrl = useRef<HTMLInputElement>(null);
+  const inputRefPost = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -19,9 +24,11 @@ function App() {
         addedTime: Date.now(),
       },
     ]);
-    console.log(info);
+    inputRefName.current.value = ""
+    inputRefUrl.current.value = ""
+    inputRefPost.current.value = ""
   };
-  // sx={{ mt: 1, width: 800, height: 300 }}
+
 
   return (
     <div className="container">
@@ -36,8 +43,8 @@ function App() {
                 id="userName"
                 placeholder="Ваше имя*"
                 name="userName"
-                autoComplete="userName"
                 autoFocus
+                inputRef={inputRefName}
               />
               <TextField
                 margin="normal"
@@ -47,7 +54,7 @@ function App() {
                 placeholder="Введите сылку на аватарку"
                 type="text"
                 id="userAvatar"
-                autoComplete="userAvatar"
+                inputRef={inputRefUrl}
               />
               <TextField
                 margin="normal"
@@ -57,7 +64,7 @@ function App() {
                 placeholder="Текст поста"
                 type="text"
                 id="postText"
-                autoComplete="current-password"
+                inputRef={inputRefPost}
               />
               <Button
                 type="submit"
