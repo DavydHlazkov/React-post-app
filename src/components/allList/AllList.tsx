@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import "./allList.css"
 
 function AllList ({info}:any){
-    //on stablitz
+    
 
     const [allPost, setAllPost] = useState<any> ([])
 
@@ -12,9 +12,9 @@ function AllList ({info}:any){
 
     
     return (
-        <div>
+        <div className ="all-list-containe">
             {info.length === 0 
-            ? null 
+            ? <div className="empty-list" >У Вас пока нет объявлений</div>
             : allPost.map((c: any) => <div className="post-list" key={c.userName}>
                 <img src={c.userAvatar} alt={c.userName}/>
                 <div>
